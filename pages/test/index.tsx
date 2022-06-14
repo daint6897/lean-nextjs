@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Form, Input, Select } from "components/test";
-import { useForm } from "react-hook-form";
-
+// import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "form";
 export default function Test() {
-    const { register, getValues, setFocus } = useForm({});
-
+    const { register, getValues, setFocus, control,watch } = useForm({});
+    useWatch({
+        // name: "firstName",
+        control
+    });
+    // const watchValue = watch("firstName")
+    // console.log("watchValuewatchValuewatchValue",watchValue);
 
     useEffect(() => {
-        setFocus("lastName")
+        setFocus("firstName")
     }, [])
 
+    const listInput = useMemo(()=>{
+        return [...Array(1000).keys()].map((index)=>{
+            return <Input name={`${index}a`} register={register} />
+        })
+    },[])
     const onSubmit = (data: any) => { console.log(data) };
 
     const handleGetFirstName = () => {
@@ -20,13 +30,24 @@ export default function Test() {
             <button onClick={() => {
                 console.log(getValues())
             }}>get value</button>
+            <p>{getValues("firstName")}</p>
+            <p>aaahihihi</p>
+            <p>{getValues("1a")}</p>
+            <p>{getValues("lastName")}</p>
+
+
+
             <Form onSubmit={onSubmit} register={register}>
                 <Input name="firstName" onBlur={handleGetFirstName} />
                 <Input name="lastName" />
                 <Select name="gender" options={["female", "male", "other"]} />
 
-                <Input type="submit" name="ahihi" value="Submit" />
+                
             </Form>
+            {listInput}
+            {[...Array(1000).keys()].map((index)=>{
+                    return <Input name={`${index}a`} register={register} />
+                })}
             {/* <Form onSubmit={onSubmit} register={register}>
             <table>
                 <tr>

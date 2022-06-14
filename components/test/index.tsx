@@ -21,14 +21,18 @@ export function Form({ defaultValues, children, register }: any) {
   );
 }
 
-export function Input({ register, name, onBlur }: any) {
+export const Input =  React.memo(function Input({ register, name, onBlur }: any) {
   const handleBlur = () => {
     if (typeof onBlur === "function") {
       onBlur()
     }
   }
+  // console.log("input rrr");
+  
   return <input {...register(name)} onBlur={handleBlur} />;
-}
+})
+
+// export 
 
 export function Select({ register, options, name, ...rest }: any) {
   return (

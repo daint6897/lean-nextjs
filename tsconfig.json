@@ -16,7 +16,18 @@
     "incremental": true,
     "baseUrl": ".",
     "types": [ "node" ],
-"typeRoots": [ "../node_modules/@types" ]
+    "typeRoots": [ "../node_modules/@types" ],
+    //
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    //
+    "sourceMap": true,
+    // "module": "es2015",
+    // "target": "es2018",
+    "declaration": true,
+    "declarationMap": true,
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
