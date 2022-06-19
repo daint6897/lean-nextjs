@@ -21,16 +21,36 @@ export function Form({ defaultValues, children, register }: any) {
   );
 }
 
-export const Input =  React.memo(function Input({ register, name, onBlur }: any) {
-  const handleBlur = () => {
-    if (typeof onBlur === "function") {
-      onBlur()
+// export const Input =  (function Input({ register, name, onBlur }: any) {
+//   const handleBlur = () => {
+//     if (typeof onBlur === "function") {
+//       onBlur()
+//     }
+//   }
+//   // console.log("input rrr");
+//
+//   return <input {...register(name)} onBlur={handleBlur} />;
+// })
+
+
+export const Input = React.memo(
+    function Input({ register, name, onBlur }: any) {
+      const handleBlur = () => {
+        if (typeof onBlur === "function") {
+          onBlur()
+        }
+      }
+      // console.log("input rrr");
+
+      return <input {...register(name)} onBlur={handleBlur} />;
+    },
+    (prevProps, nextProps) => {
+      console.log("PrevProps", prevProps);
+      console.log("NextProps", nextProps);
+      return true
+      // return prevProps.value === nextProps.value;
     }
-  }
-  // console.log("input rrr");
-  
-  return <input {...register(name)} onBlur={handleBlur} />;
-})
+);
 
 // export 
 
